@@ -23,6 +23,7 @@ gridSlider.oninput = function() {
         const divToAdd = document.createElement('div');
         divToAdd.className = 'sketch-div';
         divToAdd.id = 'sketch-div-' + i;
+        divToAdd.textContent = '.'
     
         divGrid.append(divToAdd)
     }

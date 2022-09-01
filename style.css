@@ -1,6 +1,50 @@
-// Colors
+/* // Colors
 // 90, 118, 132 | #5A7684
 // 218, 255, 239 | #DAFFEF
-// 255, 16, 83 | #FF1053
+// 255, 16, 83 | #FF1053 */
 
+/* STYLESHEET */
 
+body {
+    display: flex;
+}
+
+.main-section {
+
+}
+
+#section-1 {
+    display: flex;
+    padding-left: 15%;
+    padding-right: 15%;
+    flex-grow: 1;
+}
+
+#section-2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 3;
+}
+
+#section-3 {
+    display: flex;
+    padding-left: 15%;
+    padding-right: 15%;
+    flex-grow: 1;
+}
+
+/*Grid-related styles*/
+
+.div-grid {
+    display: flex;
+    flex-wrap: wrap;
+    width: 860px;
+    height: 860px;
+}
+
+.sketch-div {
+    flex-grow: 1;
+    background-color: black;
+    display: flex;
+}
