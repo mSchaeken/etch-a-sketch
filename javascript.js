@@ -12,7 +12,10 @@ gridSliderValue.append(gridSlider.textContent);
 gridSlider.oninput = function() {
 
     gridSliderValue.textContent = this.value;
-    gridSliderSize = this.value;
+    gridSliderSize = parseInt(this.value);
+
+    document.getElementById('div-grid').style.gridTemplateColumns = `repeat(${gridSliderSize}, 1fr)`
+    document.getElementById('div-grid').style.gridTemplateRows = `repeat(${gridSliderSize}, 1fr)`
 
     while (divGrid.hasChildNodes()) {
         divGrid.removeChild(divGrid.firstChild)
@@ -23,8 +26,7 @@ gridSlider.oninput = function() {
         const divToAdd = document.createElement('div');
         divToAdd.className = 'sketch-div';
         divToAdd.id = 'sketch-div-' + i;
-        divToAdd.textContent = '.'
-    
-        divGrid.append(divToAdd)
+
+        divGrid.append(divToAdd);
     }
 }
