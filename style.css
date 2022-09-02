@@ -8,7 +8,6 @@
 body {
     display: flex;
     justify-content: center;
-    align-items: baseline;
 }
 
 h1 {
@@ -21,14 +20,28 @@ h1 {
     align-items: center;
 }
 
+#section-1 {
+    width: 20%;
+}
+
 #section-2 {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    width: 60%;
 }
 
+#section-3 {
+    width: 20%;
+}
 
+.button {
+    font-size: 24px;
+    background-color: #5A7684;
+    border: none;
+    color: #DAFFEF;
+}
 
 .grid-slider-container {
     display: flex;
