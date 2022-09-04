@@ -6,16 +6,12 @@ const gridSliderValue = document.querySelector('#grid-slider-value');
 const divGrid = document.querySelector('.div-grid');
 const sketchDiv = document.querySelector('.sketch-div');
 
-//sketchDiv.addEventListener('click', changeSketchDiv())
 
-gridSlider.textContent = gridSlider.value;
-gridSliderValue.append(gridSlider.textContent);
 
-//Function neccesary to fill grid with divs for sketching
-gridSlider.oninput = function() {
+function createSketchDivs(divAmount=32) {
 
-    gridSliderValue.textContent = this.value;
-    gridSliderSize = parseInt(this.value);
+    gridSliderValue.textContent = divAmount;
+    gridSliderSize = parseInt(divAmount);
 
     document.getElementById('div-grid').style.gridTemplateColumns = `repeat(${gridSliderSize}, 1fr)`;
     document.getElementById('div-grid').style.gridTemplateRows = `repeat(${gridSliderSize}, 1fr)`;
@@ -34,12 +30,4 @@ gridSlider.oninput = function() {
     }
 }
 
-//Function to toggle transformed color/state of sketch divs
-function changeSketchDiv(divName = sketchDiv) {
-
-    const elements = document.querySelectorAll(divName);
-    for (const element of elements) {
-
-        element.classList.toggle('sketch-div-transformed');
-    }
-}
+gridSlider.addEventListener('input', createSketchDivs(gridSlider.value))
