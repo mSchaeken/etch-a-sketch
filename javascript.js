@@ -8,6 +8,10 @@ let gridSliderText = document.querySelector('#grid-slider-text');
 let gridSlider = document.querySelector('#grid-slider');
 let gridSliderValue = document.getElementById('grid-slider').value;
 
+let mouseDown = true
+document.body.onmousedown = () => (mouseDown = true)
+document.body.onmouseup = () => (mouseDown = false)
+
 gridSliderText.textContent = gridSliderValue;
 
 window.onload = createSketchDivs()
@@ -21,12 +25,22 @@ gridSlider.addEventListener('change', () => {
     createSketchDivs();
 });
 
+// gridSlider.addEventListener('change', () => {
+//     sketchDivs = document.querySelectorAll('.sketch-div');
+    
+//     sketchDivs.forEach((div) => {
+//         div.addEventListener('mousedown', () => {
+//                 div.className = 'sketch-div-transformed'
+//         });
+//     });
+// });
+
 gridSlider.addEventListener('change', () => {
     sketchDivs = document.querySelectorAll('.sketch-div');
     
     sketchDivs.forEach((div) => {
-        div.addEventListener('mousedown', () => {
-                div.className = 'sketch-div-transformed'
+        div.addEventListener('mouseover', () => {
+                if mouseDown
         });
     });
 });
@@ -53,15 +67,14 @@ function createSketchDivs(divAmount=gridSlider.value) {
     document.getElementById('div-grid').style.gridTemplateColumns = `repeat(${gridSliderSize}, 1fr)`;
     document.getElementById('div-grid').style.gridTemplateRows = `repeat(${gridSliderSize}, 1fr)`;
 
-    while (divGrid.hasChildNodes()) {
-        divGrid.removeChild(divGrid.firstChild);
-    }
+    clearGrid()
     
     for (i = 0; i < (gridSliderSize * gridSliderSize); i++) {
     
         const divToAdd = document.createElement('div');
         divToAdd.className = 'sketch-div';
-        divToAdd.id = 'sketch-div-' + i;
+        divToAdd.addEventListener('mouseover', changeClass)
+        divToAdd.addEventListener('mousedown', changeClass)
 
         divGrid.append(divToAdd);
     }
@@ -74,4 +87,10 @@ function attachSketchListener() {
             div.className = 'sketch-div-transformed'
         });
     });
+}
+
+function clearGrid() {
+    while (divGrid.hasChildNodes()) {
+        divGrid.removeChild(divGrid.firstChild);
+    }
 }
