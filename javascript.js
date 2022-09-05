@@ -6,13 +6,20 @@ const sketchDiv = document.querySelector('.sketch-div');
 
 let gridSliderText = document.querySelector('#grid-slider-text');
 let gridSlider = document.querySelector('#grid-slider');
-let gridSliderValue = document.getElementById('grid-slider').value
+let gridSliderValue = document.getElementById('grid-slider').value;
 
-gridSlider.addEventListener('input', updateRangeSlider())
-gridSlider.addEventListener('change', createSketchDivs())
+gridSliderText.textContent = gridSliderValue
+
+gridSlider.addEventListener('input', () => {
+     updateRangeSlider();
+});
+
+gridSlider.addEventListener('change', () => {
+    createSketchDivs()
+});
 
 function updateRangeSlider(sliderValue=parseInt(gridSlider.value)) {
-    gridSliderText.textContent = gridSlider.value
+    gridSliderText.textContent = gridSlider.value;
 }
 
 function createSketchDivs(divAmount=32) {
