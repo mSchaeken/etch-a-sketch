@@ -5,6 +5,8 @@
 
 /* STYLESHEET */
 
+
+/* ELEMENTS */
 body {
     display: flex;
     justify-content: center;
@@ -15,33 +17,18 @@ h1 {
     padding-top: 64px;
 }
 
-.main-section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#section-1 {
-    width: 20%;
-}
-
-#section-2 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    width: 60%;
-}
-
-#section-3 {
-    width: 20%;
-}
-
 button {
     font-size: 24px;
     background-color: #5A7684;
     border: none;
     color: #DAFFEF;
+}
+
+/* CLASSES */
+.main-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .grid-slider-container {
@@ -65,3 +52,19 @@ button {
     background-color: #FFFFFF;
 }
 
+/* IDs */
+#section-1 {
+    width: 20%;
+}
+
+#section-2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 60%;
+}
+
+#section-3 {
+    width: 20%;
+}
