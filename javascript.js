@@ -7,22 +7,17 @@ let gridSliderText = document.querySelector('#grid-slider-text');
 let gridSlider = document.querySelector('#grid-slider');
 let clearBtn = document.querySelector('button.clear')
 
-let mouseDown = false;
+let mouseDown = true;
 document.body.onmousedown = () => (mouseDown = true);
 document.body.onmouseup = () => (mouseDown = false);
 
 clearBtn.addEventListener('click', resetColor);
-gridSlider.addEventListener('input', updateRangeSlider);
+gridSlider.addEventListener('input', setSliderText);
 gridSlider.addEventListener('change', () => {
     createSketchDivs();
 });
 
 /* FUNCTIONS */
-
-//Function to update grid slider textcontent
-function updateRangeSlider(sliderValue=gridSlider.value) {
-    gridSliderText.textContent = gridSlider.value;
-}
 
 //Function to fill the grid container with sketching divs
 function createSketchDivs(divAmount=gridSlider.value) {
@@ -46,10 +41,10 @@ function createSketchDivs(divAmount=gridSlider.value) {
 }
 
 function changeColor(e) {
-    if (mouseDown === true) {
+    if (e.type === 'mouseover' && mouseDown !== true) {return}
+
         e.target.style.backgroundColor = '#FF1053'
     }
-}
 
 function resetColor() {
     const sketchDivs = document.querySelectorAll('.sketch-div');
@@ -67,7 +62,7 @@ function clearGrid() {
 }
 
 function setSliderText() {
-    gridSliderText.textContent = gridSlider.value
+    gridSliderText.textContent = `${gridSlider.value} x ${gridSlider.value}`
 }
 
 window.onload = createSketchDivs()
