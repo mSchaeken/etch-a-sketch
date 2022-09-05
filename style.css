@@ -9,32 +9,66 @@
 /* ELEMENTS */
 body {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     background-color: aliceblue;
+    font-family: Oswald;
 }
 
 h1 {
     padding-top: 64px;
+    font-size: 32px;
+    border-bottom: dotted;
 }
 
 button {
+    font-family: Oswald;
     font-size: 24px;
-    background-color: #5A7684;
-    border: none;
-    color: #DAFFEF;
+    color: #eef0f1;
+    background-color: #4d5e66;
+    border: dashed;
+    border-color: black;
+    width: 128px;
+    height: 64px;
 }
 
 /* CLASSES */
-.main-section {
+
+.page {
+    display: flex;
+    justify-content: center;
+}
+
+.footer {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    margin-top: 128px;
+}
+
+.content-section {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.tool-selection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    height: 50%;
+}
+
+.color {
+    font-size: 2;
 }
 
 .grid-slider-container {
     display: flex;
     flex-direction: column;
     align-items: center;
+    font-size: 24px;
 }
 
 /* GRID RELATED STYLES */
@@ -45,7 +79,7 @@ button {
     width: 550px;
     height: 550px;
     border: 8px;
-    border-style: ridge;
+    border-style: dashed;
 }
 
 .sketch-div {
@@ -54,7 +88,7 @@ button {
 
 /* IDs */
 #section-1 {
-    width: 20%;
+    width: 25%;
 }
 
 #section-2 {
@@ -62,9 +96,9 @@ button {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    width: 60%;
+    width: 500%;
 }
 
 #section-3 {
-    width: 20%;
+    width: 25%;
 }
