@@ -1,17 +1,23 @@
 /* DOM */
 
 //QuerySelectors and listeners in order to dynamically update grid based on slider value
-const gridSlider = document.querySelector('#grid-slider');
-const gridSliderValue = document.querySelector('#grid-slider-value');
 const divGrid = document.querySelector('.div-grid');
 const sketchDiv = document.querySelector('.sketch-div');
 
+let gridSliderText = document.querySelector('#grid-slider-text');
+let gridSlider = document.querySelector('#grid-slider');
+let gridSliderValue = document.getElementById('grid-slider').value
 
+gridSlider.addEventListener('input', updateRangeSlider())
+gridSlider.addEventListener('change', createSketchDivs())
+
+function updateRangeSlider(sliderValue=parseInt(gridSlider.value)) {
+    gridSliderText.textContent = gridSlider.value
+}
 
 function createSketchDivs(divAmount=32) {
 
-    gridSliderValue.textContent = divAmount;
-    gridSliderSize = parseInt(divAmount);
+    let gridSliderSize = parseInt(gridSlider.value);
 
     document.getElementById('div-grid').style.gridTemplateColumns = `repeat(${gridSliderSize}, 1fr)`;
     document.getElementById('div-grid').style.gridTemplateRows = `repeat(${gridSliderSize}, 1fr)`;
@@ -29,5 +35,3 @@ function createSketchDivs(divAmount=32) {
         divGrid.append(divToAdd);
     }
 }
-
-gridSlider.addEventListener('input', createSketchDivs(gridSlider.value))
