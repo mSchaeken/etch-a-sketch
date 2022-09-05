@@ -8,7 +8,9 @@ let gridSliderText = document.querySelector('#grid-slider-text');
 let gridSlider = document.querySelector('#grid-slider');
 let gridSliderValue = document.getElementById('grid-slider').value;
 
-gridSliderText.textContent = gridSliderValue
+gridSliderText.textContent = gridSliderValue;
+
+window.onload = createSketchDivs()
 
 gridSlider.addEventListener('input', () => {
      updateRangeSlider();
@@ -18,13 +20,13 @@ gridSlider.addEventListener('change', () => {
     createSketchDivs()
 });
 
-function updateRangeSlider(sliderValue=parseInt(gridSlider.value)) {
+function updateRangeSlider(sliderValue=gridSlider.value) {
     gridSliderText.textContent = gridSlider.value;
 }
 
-function createSketchDivs(divAmount=32) {
+function createSketchDivs(divAmount=gridSlider.value) {
 
-    let gridSliderSize = parseInt(gridSlider.value);
+    let gridSliderSize = parseInt(divAmount);
 
     document.getElementById('div-grid').style.gridTemplateColumns = `repeat(${gridSliderSize}, 1fr)`;
     document.getElementById('div-grid').style.gridTemplateRows = `repeat(${gridSliderSize}, 1fr)`;
