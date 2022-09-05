@@ -1,15 +1,17 @@
 /* DOM */
 
-//QuerySelectors and listeners in order to dynamically update grid based on slider value
 const divGrid = document.querySelector('.div-grid');
 
+let sketchDiv = document.querySelector('.sketch-div');
 let gridSliderText = document.querySelector('#grid-slider-text');
 let gridSlider = document.querySelector('#grid-slider');
+let clearBtn = document.querySelector('button.clear')
 
 let mouseDown = false;
 document.body.onmousedown = () => (mouseDown = true);
 document.body.onmouseup = () => (mouseDown = false);
 
+clearBtn.addEventListener('click', resetColor);
 gridSlider.addEventListener('input', updateRangeSlider);
 gridSlider.addEventListener('change', () => {
     createSketchDivs();
@@ -47,6 +49,15 @@ function changeColor(e) {
     if (mouseDown === true) {
         e.target.style.backgroundColor = '#FF1053'
     }
+}
+
+function resetColor() {
+    const sketchDivs = document.querySelectorAll('.sketch-div');
+
+    sketchDivs.forEach(element => {
+        element.style.backgroundColor = '#FFFFFF';
+    })
+    mouseDown = false;
 }
 
 function clearGrid() {

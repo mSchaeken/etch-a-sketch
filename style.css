@@ -37,7 +37,7 @@ h1 {
     width: 20%;
 }
 
-.button {
+button {
     font-size: 24px;
     background-color: #5A7684;
     border: none;
@@ -55,17 +55,13 @@ h1 {
 .div-grid {
     display: grid;
     margin: 32px;
-    width: 600px;
-    height: 600px;
+    width: 550px;
+    height: 550px;
     border: 8px;
     border-style: ridge;
 }
 
 .sketch-div {
-    /* border: 0.05em;
-    border-style: dashed; */
+    background-color: #FFFFFF;
 }
 
-.sketch-div-transformed {
-    background-color: #FF1053;
-}
