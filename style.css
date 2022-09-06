@@ -72,6 +72,10 @@ button {
     font-size: 24px;
 }
 
+button.color {
+    background-color: #FF1053;
+}
+
 /* GRID RELATED STYLES */
 
 .div-grid {
