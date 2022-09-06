@@ -1,15 +1,14 @@
 /* DOM */
-
 const divGrid = document.querySelector('.div-grid');
 
 let sketchDiv = document.querySelector('.sketch-div');
 let gridSliderText = document.querySelector('#grid-slider-text');
 let gridSlider = document.querySelector('#grid-slider');
-let clearBtn = document.querySelector('button.clear')
+let clearBtn = document.querySelector('button.clear');
 
-let mouseDown = true;
-document.body.onmousedown = () => (mouseDown = true);
-document.body.onmouseup = () => (mouseDown = false);
+let mouseButtonDown = false;
+document.body.onmousedown = () => (mouseButtonDown = true);
+document.body.onmouseup = () => (mouseButtonDown = false);
 
 clearBtn.addEventListener('click', resetColor);
 gridSlider.addEventListener('input', setSliderText);
@@ -37,32 +36,40 @@ function createSketchDivs(divAmount=gridSlider.value) {
         divToAdd.addEventListener('mouseover', changeColor);
         divToAdd.addEventListener('mousedown', changeColor);
         divGrid.append(divToAdd);
-    }
-}
+    };
+};
 
 function changeColor(e) {
-    if (e.type === 'mouseover' && mouseDown !== true) {return}
+    if (e.type === 'mouseover' && mouseButtonDown !== true) {return};
 
-        e.target.style.backgroundColor = '#FF1053'
-    }
+        e.target.style.backgroundColor = '#FF1053';
+    };
 
 function resetColor() {
     const sketchDivs = document.querySelectorAll('.sketch-div');
 
     sketchDivs.forEach(element => {
         element.style.backgroundColor = '#FFFFFF';
-    })
+    });
     mouseDown = false;
-}
+};
+
+function addGridLines() {
+    const sketchDivs = document.querySelectorAll('.sketch-div');
+    sketchDivs.forEach(element => {
+        element.style.border = 'dashed';
+        element.style.borderSize = '0.05em';
+    });
+};
 
 function clearGrid() {
     while (divGrid.hasChildNodes()) {
         divGrid.removeChild(divGrid.firstChild);
-    }
-}
+    };
+};
 
 function setSliderText() {
-    gridSliderText.textContent = `${gridSlider.value} x ${gridSlider.value}`
-}
+    gridSliderText.textContent = `${gridSlider.value} x ${gridSlider.value}`;
+};
 
 window.onload = createSketchDivs()
