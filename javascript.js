@@ -1,25 +1,28 @@
 /* DOM */
 
 const colorPicker = document.createElement('input');
+      colorPicker.value = '#FF1053';
 
 const divGrid = document.querySelector('.div-grid');
 const gridSliderText = document.querySelector('#grid-slider-text');
 const gridSlider = document.querySelector('#grid-slider');
 const clearBtn = document.querySelector('button.clear');
 const toggleBtn = document.querySelector('button.toggle-grid-lines');
+const colorSelector = document.querySelector('input.color')
+      colorSelector.value = '#FF1053';
 
 let gridToggle = false;
 let mouseButtonDown = false;
+let sketchColor = '#FF1053';
 
 document.body.onmousedown = () => (mouseButtonDown = true);
 document.body.onmouseup = () => (mouseButtonDown = false);
 
 clearBtn.addEventListener('click', resetColor);
 toggleBtn.addEventListener('click', addGridLines);
+colorSelector.addEventListener('change', chooseColor)
 gridSlider.addEventListener('input', setSliderText);
-gridSlider.addEventListener('change', () => {
-    createSketchDivs();
-});
+gridSlider.addEventListener('change', () => {createSketchDivs()});
 
 /* FUNCTIONS */
 
@@ -38,17 +41,20 @@ function createSketchDivs(divAmount=gridSlider.value) {
         const divToAdd = document.createElement('div');
 
         divToAdd.className = 'sketch-div';
-        divToAdd.addEventListener('mouseover', changeColor);
-        divToAdd.addEventListener('mousedown', changeColor);
+        divToAdd.addEventListener('mouseover', sketch);
+        divToAdd.addEventListener('mousedown', sketch);
         divGrid.append(divToAdd);
     };
 };
 
-function changeColor(e) {
+function sketch(e) {
     if (e.type === 'mouseover' && mouseButtonDown !== true) {return};
-
-        e.target.style.backgroundColor = '#FF1053';
+        e.target.style.backgroundColor = sketchColor;
     };
+
+function chooseColor() {
+    sketchColor = colorSelector.value;
+}
 
 function resetColor() {
     const sketchDivs = document.querySelectorAll('.sketch-div');
