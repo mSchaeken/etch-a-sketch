@@ -22,7 +22,7 @@ h1 {
 
 button {
     font-family: Oswald;
-    font-size: 24px;
+    font-size: 20px;
     color: #eef0f1;
     background-color: #4d5e66;
     border: dashed;
@@ -58,14 +58,6 @@ button {
     justify-content: center;
     gap: 32px;
     height: 50%;
-}
-
-.color {
-    font-size: 20px;
-}
-
-.clear {
-    font-size: 20px;
 }
 
 .grid-slider-container {

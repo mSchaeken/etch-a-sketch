@@ -1,16 +1,21 @@
 /* DOM */
+
+const colorPicker = document.createElement('input');
+
 const divGrid = document.querySelector('.div-grid');
+const gridSliderText = document.querySelector('#grid-slider-text');
+const gridSlider = document.querySelector('#grid-slider');
+const clearBtn = document.querySelector('button.clear');
+const toggleBtn = document.querySelector('button.toggle-grid-lines');
 
-let sketchDiv = document.querySelector('.sketch-div');
-let gridSliderText = document.querySelector('#grid-slider-text');
-let gridSlider = document.querySelector('#grid-slider');
-let clearBtn = document.querySelector('button.clear');
-
+let gridToggle = false;
 let mouseButtonDown = false;
+
 document.body.onmousedown = () => (mouseButtonDown = true);
 document.body.onmouseup = () => (mouseButtonDown = false);
 
 clearBtn.addEventListener('click', resetColor);
+toggleBtn.addEventListener('click', addGridLines);
 gridSlider.addEventListener('input', setSliderText);
 gridSlider.addEventListener('change', () => {
     createSketchDivs();
@@ -55,11 +60,22 @@ function resetColor() {
 };
 
 function addGridLines() {
-    const sketchDivs = document.querySelectorAll('.sketch-div');
-    sketchDivs.forEach(element => {
-        element.style.border = 'dashed';
-        element.style.borderSize = '0.05em';
-    });
+    const sketchDivs = document.querySelectorAll('.sketch-div')
+
+    if (gridToggle === false) {
+        sketchDivs.forEach(element => {
+            element.style.border = 'dotted';
+            element.style.borderWidth = '0.05em';
+        });
+        gridToggle = true;
+    }
+
+    else {
+        sketchDivs.forEach(element => {
+            element.style.border = 'none';
+        });
+        gridToggle = false;
+    };
 };
 
 function clearGrid() {
