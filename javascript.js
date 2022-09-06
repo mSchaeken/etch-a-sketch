@@ -1,8 +1,12 @@
 /* DOM */
+
 const colorInput = document.createElement('input')
       colorInput.type = 'color';
       colorInput.className = 'color';
+      colorInput.value = '#FF1053'
 
+const pageHeader = document.querySelector('h1');
+      pageHeader.style.borderColor = '#FF1053'
 const divGrid = document.querySelector('.div-grid');
 const gridSliderText = document.querySelector('#grid-slider-text');
 const gridSlider = document.querySelector('#grid-slider');
@@ -20,7 +24,7 @@ document.body.onmouseup = () => (mouseButtonDown = false);
 clearBtn.addEventListener('click', resetColor);
 toggleBtn.addEventListener('click', addGridLines);
 colorBtn.addEventListener('click', chooseColor);
-colorInput.addEventListener('input', updateColorButton);
+colorInput.addEventListener('input', chooseColor);
 gridSlider.addEventListener('input', setSliderText);
 gridSlider.addEventListener('change', () => {createSketchDivs()});
 
@@ -52,12 +56,11 @@ function sketch(e) {
         e.target.style.backgroundColor = sketchColor;
     };
 
-function chooseColor() {
-    colorInput.click();
-}
 
-function updateColorButton() {
+function chooseColor() {
+    colorInput.click()
     colorBtn.style.backgroundColor = colorInput.value;
+    pageHeader.style.borderColor = colorInput.value;
     sketchColor = colorInput.value;
 }
 
