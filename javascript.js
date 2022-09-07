@@ -1,10 +1,5 @@
 /* DOM */
 
-/* 
--- Create style to change rainbow button color on toggle
--- Implement actual rainbow coloring
-*/
-
 const colorInput = document.createElement('input')
       colorInput.type = 'color';
       colorInput.className = 'color';
@@ -64,14 +59,9 @@ function sketch(e) {
     if (e.type === 'mouseover' && mouseButtonDown !== true) {
         return
     }
-    else if (rainbowToggle === false) {
+    else {
         e.target.style.backgroundColor = sketchColor;
-    }
-    else if (rainbowToggle === true) {
-        
-        e.target.style.backgroundColor = sketchColor;
-    }
-        
+    }  
 };
 
 
@@ -122,8 +112,9 @@ function toggleRainbow() {
             element.removeEventListener('mouseout', randomColor)
         })
         
-        sketchColor = colorInput.value
-        rainbowToggle = false
+        rainbowBtn.style.backgroundImage = null;
+        sketchColor = colorInput.value;
+        rainbowToggle = false;
     }
     
     else {
@@ -131,7 +122,8 @@ function toggleRainbow() {
             element.addEventListener('mouseout', randomColor)
         })
 
-        rainbowToggle = true
+        rainbowBtn.style.backgroundImage = 'linear-gradient(to right, red, orange, green, blue, indigo, violet)';
+        rainbowToggle = true;
     }
 }
 

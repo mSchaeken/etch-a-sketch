@@ -36,6 +36,11 @@ button {
     width: 128px;
     height: 64px;
     margin-right: 32px;
+    transition: 0.3s;
+}
+
+button:hover {
+     border-color: aliceblue;
 }
 
 /* CLASSES */
