@@ -14,9 +14,11 @@ const clearBtn = document.querySelector('button.clear');
 const colorBtn = document.querySelector('button.color')
 const toggleBtn = document.querySelector('button.toggle-grid-lines');
 const rainbowBtn = document.querySelector('button.rainbow');
+const brightnessBtn = document.querySelector('button.brightness');
 
 let gridToggle = false;
 let rainbowToggle = false;
+let brightnessToggle = false;
 let mouseButtonDown = false;
 let sketchColor = '#FF1053';
 
@@ -28,6 +30,7 @@ toggleBtn.addEventListener('click', addGridLines);
 colorBtn.addEventListener('click', chooseColor);
 colorInput.addEventListener('input', chooseColor);
 rainbowBtn.addEventListener('click', toggleRainbow);
+brightnessBtn.addEventListener('click', toggleBrightness);
 gridSlider.addEventListener('input', setSliderText);
 gridSlider.addEventListener('change', () => {createSketchDivs()});
 
@@ -48,6 +51,7 @@ function createSketchDivs(divAmount=gridSlider.value) {
         const divToAdd = document.createElement('div');
 
         divToAdd.className = 'sketch-div';
+        divToAdd.style.filter = 'brightness(100%)';
         divToAdd.addEventListener('mouseover', sketch);
         divToAdd.addEventListener('mousedown', sketch);
         divGrid.append(divToAdd);
@@ -63,6 +67,12 @@ function createSketchDivs(divAmount=gridSlider.value) {
     if (rainbowToggle === true) {
         rainbowToggle = false;
         toggleRainbow();
+    };
+
+    //Make sure brightness mode stays toggled on after creating a new sketching grid
+    if (brightnessToggle === true) {
+        brightnessToggle = false;
+        toggleBrightness();
     };
 };
 
@@ -100,6 +110,7 @@ function resetColor() {
 function addGridLines() {
     const sketchDivs = document.querySelectorAll('.sketch-div');
 
+    //Add lines if mode was toggled off when function is called
     if (gridToggle === false) {
         sketchDivs.forEach(element => {
             element.style.border = 'dotted';
@@ -108,9 +119,10 @@ function addGridLines() {
         gridToggle = true;
     }
 
+    //Remove lines if mode was toggled on when function is called
     else {
         sketchDivs.forEach(element => {
-            element.style.border = 'none';
+            element.style.border = null;
         });
         gridToggle = false;
     };
@@ -119,6 +131,7 @@ function addGridLines() {
 function toggleRainbow() {
     const sketchDivs = document.querySelectorAll('.sketch-div');
 
+    //Remove rainbow listener when mode is toggled on when function is called
     if (rainbowToggle === true ) {
         sketchDivs.forEach(element => {
             element.removeEventListener('mouseout', randomColor)
@@ -129,6 +142,7 @@ function toggleRainbow() {
         rainbowToggle = false;
     }
     
+    //Add rainbow listener if mode is toggled off when function is called
     else {
         sketchDivs.forEach(element => {
             element.addEventListener('mouseout', randomColor)
@@ -138,6 +152,42 @@ function toggleRainbow() {
         rainbowToggle = true;
     }
 }
+
+function toggleBrightness() {
+    const sketchDivs = document.querySelectorAll('.sketch-div');
+
+    if (brightnessToggle === false ) {
+        sketchDivs.forEach(element => {
+        element.addEventListener('mouseenter', changeBrightness);
+        element.addEventListener('mousedown', changeBrightness);
+        })
+        brightnessToggle = true;
+    }
+
+    else {
+        sketchDivs.forEach(element => {
+            element.removeEventListener('mouseenter', changeBrightness);
+            element.removeEventListener('mousedown', changeBrightness);
+        })
+        brightnessToggle = false;
+    };
+};
+
+function changeBrightness(e) {
+    if (e.type === 'mouseenter' && mouseButtonDown !== true) {
+        return
+    }
+
+    else {
+    let brightness = this.style.filter;
+    let brightnessValue = undefined;
+    let newBrightnessValue = undefined;
+
+    brightnessValue = parseInt(brightness.slice(11, 14));
+    newBrightnessValue = brightnessValue - 10;
+    this.style.filter = `brightness(${newBrightnessValue}%)`;
+    };
+};
 
 function clearGrid() {
     while (divGrid.hasChildNodes()) {

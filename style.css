@@ -30,6 +30,7 @@ button {
     font-size: 20px;
     color: #eef0f1;
     background-color: #4d5e66;
+    background: hsl(#4d5e66, 100%, 100%);
     border: solid;
     border-color: black;
     border-radius: 4px;
