@@ -52,6 +52,18 @@ function createSketchDivs(divAmount=gridSlider.value) {
         divToAdd.addEventListener('mousedown', sketch);
         divGrid.append(divToAdd);
     };
+
+    //Make sure gridlines stay toggled on after creating a new sketching grid
+    if (gridToggle === true) {
+        gridToggle = false;
+        addGridLines();
+    };
+
+    //Make sure rainbow mode stays toggled on after creating a new sketching grid
+    if (rainbowToggle === true) {
+        rainbowToggle = false;
+        toggleRainbow();
+    };
 };
 
 function sketch(e) {
