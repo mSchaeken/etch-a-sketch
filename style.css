@@ -23,6 +23,7 @@ h1 {
     padding-top: 64px;
     font-size: 32px;
     border-bottom: dotted;
+    border-color: #FF1053;
 }
 
 button {
@@ -82,6 +83,7 @@ button:hover {
 button.color {
     background-color: #FF1053;
 }
+
 
 /* GRID RELATED STYLES */
 

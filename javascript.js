@@ -6,7 +6,6 @@ const colorInput = document.createElement('input')
       colorInput.value = '#FF1053'
 
 const pageHeader = document.querySelector('h1');
-      pageHeader.style.borderColor = '#FF1053'
 const divGrid = document.querySelector('.div-grid');
 const gridSliderText = document.querySelector('#grid-slider-text');
 const gridSlider = document.querySelector('#grid-slider');
@@ -91,7 +90,7 @@ function sketch(e) {
 
 
 function chooseColor() {
-    colorInput.click()
+    colorInput.click();
     colorBtn.style.backgroundColor = colorInput.value;
     pageHeader.style.borderColor = colorInput.value;
     sketchColor = colorInput.value;
