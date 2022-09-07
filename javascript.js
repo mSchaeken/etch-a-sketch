@@ -10,23 +10,26 @@ const pageHeader = document.querySelector('h1');
 const divGrid = document.querySelector('.div-grid');
 const gridSliderText = document.querySelector('#grid-slider-text');
 const gridSlider = document.querySelector('#grid-slider');
+const eraserBtn = document.querySelector('button.eraser');
 const clearBtn = document.querySelector('button.clear');
 const colorBtn = document.querySelector('button.color')
-const toggleBtn = document.querySelector('button.toggle-grid-lines');
+const toggleGridBtn = document.querySelector('button.toggle-grid-lines');
 const rainbowBtn = document.querySelector('button.rainbow');
 const brightnessBtn = document.querySelector('button.brightness');
 
 let gridToggle = false;
 let rainbowToggle = false;
 let brightnessToggle = false;
+let eraserToggle = false;
 let mouseButtonDown = false;
 let sketchColor = '#FF1053';
 
 document.body.onmousedown = () => (mouseButtonDown = true);
 document.body.onmouseup = () => (mouseButtonDown = false);
 
+eraserBtn.addEventListener('click', toggleEraser)
 clearBtn.addEventListener('click', resetColor);
-toggleBtn.addEventListener('click', addGridLines);
+toggleGridBtn.addEventListener('click', addGridLines);
 colorBtn.addEventListener('click', chooseColor);
 colorInput.addEventListener('input', chooseColor);
 rainbowBtn.addEventListener('click', toggleRainbow);
@@ -103,8 +106,24 @@ function resetColor() {
 
     sketchDivs.forEach(element => {
         element.style.backgroundColor = '#FFFFFF';
+        element.style.filter = 'brightness(100%)';
     });
     mouseDown = false;
+};
+
+function toggleEraser() {
+    if (eraserToggle === false) {
+        sketchColor = '#FFFFFF';
+        eraserBtn.style.backgroundColor = '#000000'
+        eraserToggle = true;
+    }
+
+    else {
+        sketchColor = colorInput.value;
+        eraserBtn.style.backgroundColor = '#4d5e66'
+        eraserToggle = false
+    };
+
 };
 
 function addGridLines() {
@@ -116,6 +135,7 @@ function addGridLines() {
             element.style.border = 'dotted';
             element.style.borderWidth = '0.05em';
         });
+        toggleGridBtn.style.backgroundColor = '#000000'
         gridToggle = true;
     }
 
@@ -124,6 +144,7 @@ function addGridLines() {
         sketchDivs.forEach(element => {
             element.style.border = null;
         });
+        toggleGridBtn.style.backgroundColor = '#4d5e66'
         gridToggle = false;
     };
 };
@@ -157,14 +178,17 @@ function toggleBrightness() {
     const sketchDivs = document.querySelectorAll('.sketch-div');
 
     if (brightnessToggle === false ) {
+        
         sketchDivs.forEach(element => {
         element.addEventListener('mouseenter', changeBrightness);
         element.addEventListener('mousedown', changeBrightness);
         })
+        brightnessBtn.style.backgroundColor = '#000000'
         brightnessToggle = true;
     }
 
     else {
+        brightnessBtn.style.backgroundColor = '#4d5e66'
         sketchDivs.forEach(element => {
             element.removeEventListener('mouseenter', changeBrightness);
             element.removeEventListener('mousedown', changeBrightness);
