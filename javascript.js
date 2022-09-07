@@ -1,5 +1,10 @@
 /* DOM */
 
+/* 
+-- Create style to change rainbow button color on toggle
+-- Implement actual rainbow coloring
+*/
+
 const colorInput = document.createElement('input')
       colorInput.type = 'color';
       colorInput.className = 'color';
@@ -56,8 +61,17 @@ function createSketchDivs(divAmount=gridSlider.value) {
 
 function sketch(e) {
 
-    if (e.type === 'mouseover' && mouseButtonDown !== true) {return};
+    if (e.type === 'mouseover' && mouseButtonDown !== true) {
+        return
+    }
+    else if (rainbowToggle === false) {
         e.target.style.backgroundColor = sketchColor;
+    }
+    else if (rainbowToggle === true) {
+        
+        e.target.style.backgroundColor = sketchColor;
+    }
+        
 };
 
 
@@ -101,11 +115,22 @@ function addGridLines() {
 };
 
 function toggleRainbow() {
+    const sketchDivs = document.querySelectorAll('.sketch-div');
+
     if (rainbowToggle === true ) {
+        sketchDivs.forEach(element => {
+            element.removeEventListener('mouseout', randomColor)
+        })
+        
+        sketchColor = colorInput.value
         rainbowToggle = false
     }
     
     else {
+        sketchDivs.forEach(element => {
+            element.addEventListener('mouseout', randomColor)
+        })
+
         rainbowToggle = true
     }
 }
