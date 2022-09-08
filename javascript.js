@@ -157,6 +157,7 @@ function toggleRainbow() {
             element.removeEventListener('mouseout', randomColor)
         })
         
+        rainbowBtn.style.backgroundColor = '#4d5e66'
         rainbowBtn.style.backgroundImage = null;
         sketchColor = colorInput.value;
         rainbowToggle = false;
@@ -168,7 +169,7 @@ function toggleRainbow() {
             element.addEventListener('mouseout', randomColor)
         })
 
-        rainbowBtn.style.backgroundImage = 'linear-gradient(to right, red, orange, green, blue, indigo, violet)';
+        rainbowBtn.style.backgroundColor = '#000000'
         rainbowToggle = true;
     }
 }
