@@ -23,8 +23,8 @@ let eraserToggle = false;
 let mouseButtonDown = false;
 let sketchColor = '#FF1053';
 
-document.body.onmousedown = () => (mouseButtonDown = true);
-document.body.onmouseup = () => (mouseButtonDown = false);
+divGrid.onmousedown = () => (mouseButtonDown = true);
+divGrid.onmouseup = () => (mouseButtonDown = false);
 
 eraserBtn.addEventListener('click', toggleEraser)
 clearBtn.addEventListener('click', resetColor);
