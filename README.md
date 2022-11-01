@@ -4,7 +4,7 @@ Basic Etch-a-Sketch app built to practice DOM manipulation with Javascript.
 
 Live demo: https://mschaeken.github.io/etch-a-sketch/
 
-This project was buit at the start of my coding journey in order to practice my plain Javascript, and especially DOM manipulation. Another point of focus was usage of event listeners and updating various styles and attributes of HTML elements using Javascript. The languages that were used are Javascript, HTML and CSS as these form the basis of most websites at the time of writing this. I specifically chose not to use additional libraries or frameworks like jQuery and React in order to practice just Javascript.
+Project in order to practice plain Javascript, and especially DOM manipulation. Another point of focus was usage of event listeners and updating various styles and attributes of HTML elements using Javascript. The languages that were used are Javascript, HTML and CSS as these form the basis of most websites at the time of writing this. I specifically chose not to use additional libraries or frameworks like jQuery and React in order to practice just Javascript.
 
 The app itself contains a basic sketching pad made out of a grid of divs and some buttons containing additional options like toggling grid lines, clearing the grid
 and choosing a sketching color.
